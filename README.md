@@ -14,10 +14,9 @@ Teens to Adults, Casual gamers, Both, Indie gamers
 
 2-3 similar games
 Puzzle Quest Series, Bejeweled Series, Rouge 
-What games are most similar to this game.  Listing the specific features where appropriate
 
 Unique selling points 
-It's combining roguelike and match 3 elements ?  Is this game combining known features in a unique way?
+It's combining roguelike and match 3 elements
 
 What’s enjoyable/positive about this game? 
 Play it for a mixer of match 3 light RPG elements for puzzle solving fun!
@@ -31,4 +30,4 @@ Finished Art Asset
 Polished game mechanics(a little bit)
 
 References 
-You need to list all references used to develop this game?  Online tutorials.  Book references.  Etc. 
+https://www.youtube.com/watch?v=u3ARv2JJNFY, an online youtube tutorial of that the match 3 elements are based on 
