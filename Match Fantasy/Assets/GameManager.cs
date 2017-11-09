@@ -48,7 +48,6 @@ public class GameManager : MonoBehaviour
             }
         }
 		ShuffleList ();
-       
         for (int r = 0; r < rows; r++)
         {
             for (int c = 0; r < cols; c++)
