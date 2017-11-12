@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
         int numCopies = (rows * cols);
         for (int i = 0; i < numCopies; i++)
         {
-            for (int j = 0; j < tiles.Length; j++)
+            for (int j = 0; j < tile.Length; j++)
             {
                 GameObject o = (GameObject) Instantiate(tile[j], new Vector3(-10, -10, 0), tile[j].transform.rotation);
 				o.SetActive (false);
@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
 		ShuffleList ();
         for (int r = 0; r < rows; r++)
         {
-            for (int c = 0; r < cols; c++)
+            for (int c = 0; c < cols; c++)
             {
                 Vector3 tilePos = new Vector3(c, r, 0);
 				for (int n = 0; n < tileBank.Count; n++) 
