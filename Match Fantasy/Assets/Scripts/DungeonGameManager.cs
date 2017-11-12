@@ -1,19 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class dTile // used by the tiles to point to the same tiles when matching
-{
-	public GameObject tileObj;
-	public string type;
-	public dTile(GameObject obj, string t)
-	{
-		tileObj = obj;
-		type = t;
-	}
-}
 public class DungeonGameManager : MonoBehaviour 
 {
-	GameObject[] dungeonTiles;
 	void Start()
 	{
 		
