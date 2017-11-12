@@ -19,8 +19,6 @@ public class GameManager : MonoBehaviour
     List<GameObject> tileBank = new List<GameObject>();
 	static int rows = 8; // how many rows in the match 3 (tutorial code)
 	static int cols = 8; // how many columns in the match 3 (tutorial code)
-	static int dRows = 8; // how many colums in the duegon 
-	static int dcols = 5; // how many colums in the duegon
 	bool renewBoard = false;
 	Tile[,] tiles = new Tile[cols, rows]; // A Array of objects for the tiles for the match 3 (tutorial code)
 	GameObject dungeonTile = null; // variable to hold the dungeonTile match (Not tutorial cide)
@@ -39,7 +37,7 @@ public class GameManager : MonoBehaviour
 	}
     void Start() // Use this for initialization
     {
-		int numCopies = (rows * cols)/3; // (tutorial code)
+		int numCopies = (rows * cols); // (tutorial code block)
 		for (int i = 0; i < numCopies; i++) // creating copies so that we don't run out of copies (tutorial code)
         {
             for (int j = 0; j < tile.Length; j++)
@@ -79,7 +77,6 @@ public class GameManager : MonoBehaviour
 			if (hit) // makes the hit tile in the variable (tutorial code)
 			{
 				tile1 = hit.collider.gameObject;
-				Debug.Log("tile1 collected");
 			}
 		}
 		else if(Input.GetMouseButtonUp(0)&& tile1) // casting a ray into the scene if the mouse was clicked for a hit on the second tile (tutorial code)
@@ -89,13 +86,12 @@ public class GameManager : MonoBehaviour
 			if (hit) // makes the hit tile in the variable tile2
 			{
 				tile2 = hit.collider.gameObject;
-				Debug.Log("tile2 collected");
 			}
 			if (tile1 && tile2) // runs if their are two tiles clicked (tutorial code)
 			{
 				int horzDist = (int)Mathf.Abs (tile1.transform.position.x - tile2.transform.position.x);
 				int vertDist = (int)Mathf.Abs (tile1.transform.position.y - tile2.transform.position.y);
-				if (horzDist == 1 & vertDist == 0 || horzDist == 0 & vertDist == 1) // swaps the position of the tow hit tiles
+				if (horzDist == 1 & vertDist == 0 || horzDist == 0 & vertDist == 1) // swaps the position of the two hit tiles (parsal tutorial code block)
 				{
 					Tile temp = tiles [(int)tile1.transform.position.x, (int)tile1.transform.position.y];
 					tiles [(int)tile1.transform.position.x, (int)tile1.transform.position.y] = tiles [(int)tile2.transform.position.x, (int)tile2.transform.position.y];
@@ -131,7 +127,7 @@ public class GameManager : MonoBehaviour
 					{
 						counter = 1;	
 					}
-					if(counter == 3) // removes three in a row
+					if(counter == 3) // removes three in a row (tutorial code)
 					{
 						if(tiles[c,r] != null)
 						{
@@ -148,6 +144,59 @@ public class GameManager : MonoBehaviour
 						tiles [c, r] = null; //resets first tile reference
 						tiles [c-1, r] = null; //resets second tile reference
 						tiles [c-2, r] = null; //resets third tile reference
+						renewBoard = true;
+					}
+					if(counter == 4) // removes four in a row (Not tutorial code)
+					{
+						if(tiles[c,r] != null)
+						{
+							tiles [c, r].tileObj.SetActive (false);
+						}
+						if(tiles[c-1,r] != null)
+						{
+							tiles [c-1, r].tileObj.SetActive (false);
+						}
+						if(tiles[c-2,r] != null)
+						{
+							tiles [c-2, r].tileObj.SetActive (false);
+						}
+						if(tiles[c-3,r] != null) 
+						{
+							tiles [c-3, r].tileObj.SetActive (false);
+						}
+						tiles [c, r] = null; //resets first tile reference
+						tiles [c-1, r] = null; //resets second tile reference
+						tiles [c-2, r] = null; //resets third tile reference
+						tiles [c-3, r] = null; //resets fourth tile reference
+						renewBoard = true;
+					}
+					if(counter == 5) // removes five in a row (Not tutorial code)
+					{
+						if(tiles[c,r] != null)
+						{
+							tiles [c, r].tileObj.SetActive (false);
+						}
+						if(tiles[c-1,r] != null)
+						{
+							tiles [c-1, r].tileObj.SetActive (false);
+						}
+						if(tiles[c-2,r] != null)
+						{
+							tiles [c-2, r].tileObj.SetActive (false);
+						}
+						if(tiles[c-3,r] != null) 
+						{
+							tiles [c-3, r].tileObj.SetActive (false);
+						}
+						if(tiles[c-4,r] != null) 
+						{
+							tiles [c-4, r].tileObj.SetActive (false);
+						}
+						tiles [c, r] = null; //resets first tile reference
+						tiles [c-1, r] = null; //resets second tile reference
+						tiles [c-2, r] = null; //resets third tile reference
+						tiles [c-3, r] = null; //resets fourth tile reference
+						tiles [c-4, r] = null; //resets fifth tile reference
 						renewBoard = true;
 					}
 				}
@@ -168,9 +217,28 @@ public class GameManager : MonoBehaviour
 					{
 						counter = 1;	
 					}
-					if(counter == 3) // removes three in a row
+					if(counter == 3) // removes three in a row (tutorial code)
 					{
-						if(tiles[c , r] != null)
+						if(tiles[c,r] != null)
+						{
+							tiles [c,r].tileObj.SetActive (false);
+						}
+						if(tiles[c,r-1] != null)
+						{
+							tiles [c,r-1].tileObj.SetActive (false);
+						}
+						if (tiles [c, r - 2] != null) 
+						{
+							tiles [c, r - 2].tileObj.SetActive (false);
+						}
+						tiles [c,r] = null;
+						tiles [c,r-1] = null;
+						tiles [c,r-2] = null;
+						renewBoard = true;
+					}
+					if (counter == 4) // removes four in a row (Not tutorial code)
+					{
+						if(tiles[c,r] != null)
 						{
 							tiles [c,r].tileObj.SetActive (false);
 						}
@@ -182,9 +250,43 @@ public class GameManager : MonoBehaviour
 						{
 							tiles [c,r-2].tileObj.SetActive (false);
 						}
+						if(tiles[c,r-3] != null)
+						{
+							tiles [c,r-3].tileObj.SetActive (false); 
+						}
 						tiles [c,r] = null;
 						tiles [c,r-1] = null;
 						tiles [c,r-2] = null;
+						tiles [c,r-3] = null; 
+						renewBoard = true;
+					}
+					if (counter == 5) // removes five in a row (Not tutorial code)
+					{
+						if(tiles[c,r] != null)
+						{
+							tiles [c,r].tileObj.SetActive (false);
+						}
+						if(tiles[c,r-1] != null)
+						{
+							tiles [c,r-1].tileObj.SetActive (false);
+						}
+						if(tiles[c,r-2] != null)
+						{
+							tiles [c,r-2].tileObj.SetActive (false);
+						}
+						if(tiles[c,r-3] != null)
+						{
+							tiles [c,r-3].tileObj.SetActive (false); 
+						}
+						if(tiles[c,r-4] != null)
+						{
+							tiles [c,r-4].tileObj.SetActive (false); 
+						}
+						tiles [c,r] = null;
+						tiles [c,r-1] = null;
+						tiles [c,r-2] = null;
+						tiles [c,r-3] = null; 
+						tiles [c,r-4] = null; 
 						renewBoard = true;
 					}
 				}
@@ -196,13 +298,6 @@ public class GameManager : MonoBehaviour
 			renewBoard = false;
 		}
 	}
-	//void MoveCharacterOnGrid () // moves the character on the grid to the matching colour (not tutorial code block)
-	//{
-		//if(type == type)
-		//{
-			//
-		//}
-	//}
 	void RenewGrid() // renews the grid after a pair of three is taked away (tutorial code block)
 	{
 		bool anyMoved = false;
@@ -211,7 +306,7 @@ public class GameManager : MonoBehaviour
 		{
 			for (int c = 0; c < cols; c++) 
 			{
-				if(r == rows-1 && tiles[c,r] == null) // If the some tile in the top row is empty
+				if(r == rows-1 && tiles[c,r] == null) // If some tile on the top row is empty
 				{
 					Vector3 tilePos = new Vector3 (c, r, 0);
 					for(int n = 0; n < tileBank.Count; n++)
