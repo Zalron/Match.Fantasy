@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class Tile // used by the tiles to point to the same tiles when matching
+public class Tile // used by the tiles to point to the same tiles when matching (tutorial code)
 {
     public GameObject tileObj;
     public string type;
@@ -19,8 +19,11 @@ public class GameManager : MonoBehaviour
     List<GameObject> tileBank = new List<GameObject>();
 	static int rows = 8; // how many rows in the match 3 (tutorial code)
 	static int cols = 8; // how many columns in the match 3 (tutorial code)
+	static int dRows = 8; // how many colums in the duegon 
+	static int dcols = 5; // how many colums in the duegon
 	bool renewBoard = false;
 	Tile[,] tiles = new Tile[cols, rows]; // A Array of objects for the tiles for the match 3 (tutorial code)
+	GameObject dungeonTile = null; // variable to hold the dungeonTile match (Not tutorial cide)
 	void ShuffleList() // shuffles the list of tiles (tutorial code)
 	{
 		System.Random rand = new System.Random ();
@@ -36,8 +39,8 @@ public class GameManager : MonoBehaviour
 	}
     void Start() // Use this for initialization
     {
-        int numCopies = (rows * cols)/3;
-        for (int i = 0; i < numCopies; i++) // creating copies so that we don't run out of copies 
+		int numCopies = (rows * cols)/3; // (tutorial code)
+		for (int i = 0; i < numCopies; i++) // creating copies so that we don't run out of copies (tutorial code)
         {
             for (int j = 0; j < tile.Length; j++)
             {
@@ -47,7 +50,7 @@ public class GameManager : MonoBehaviour
             }
         }
 		ShuffleList ();
-        for (int r = 0; r < rows; r++)
+		for (int r = 0; r < rows; r++)// (tutorial code block)
         {
             for (int c = 0; c < cols; c++)
             {
@@ -68,25 +71,27 @@ public class GameManager : MonoBehaviour
 	}
 	void Update () // Update is called once per frame
     {
-		CheckGrid ();
-		if (Input.GetMouseButtonDown (0)) // casting a ray into the scene if the mouse was clicked for a hit on the first tile 
+		CheckGrid (); //(tutorial code block)
+		if (Input.GetMouseButtonDown (0)) // casting a ray into the scene if the mouse was clicked for a hit on the first tile (tutorial code)
 		{
 			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 			RaycastHit2D hit = Physics2D.GetRayIntersection (ray, 1000);
-			if (hit) // makes the hit tile in the variable
+			if (hit) // makes the hit tile in the variable (tutorial code)
 			{
 				tile1 = hit.collider.gameObject;
+				Debug.Log("tile1 collected");
 			}
 		}
-		else if(Input.GetMouseButtonUp(0)&& tile1) // casting a ray into the scene if the mouse was clicked for a hit on the second tile 
+		else if(Input.GetMouseButtonUp(0)&& tile1) // casting a ray into the scene if the mouse was clicked for a hit on the second tile (tutorial code)
 		{
 			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 			RaycastHit2D hit = Physics2D.GetRayIntersection (ray, 1000);
 			if (hit) // makes the hit tile in the variable tile2
 			{
 				tile2 = hit.collider.gameObject;
+				Debug.Log("tile2 collected");
 			}
-			if (tile1 && tile2) // runs if their are two tiles clicked
+			if (tile1 && tile2) // runs if their are two tiles clicked (tutorial code)
 			{
 				int horzDist = (int)Mathf.Abs (tile1.transform.position.x - tile2.transform.position.x);
 				int vertDist = (int)Mathf.Abs (tile1.transform.position.y - tile2.transform.position.y);
@@ -101,14 +106,14 @@ public class GameManager : MonoBehaviour
 					tile1 = null; // Resets the touched tile variable
 					tile2 = null; // Resets the touched tile variable
 				} 
-				else 
+				else //(tutorial code block)
 				{
 					GetComponent<AudioSource> ().Play (); // for audio, will add in second assessment
 				}
 			}
 		}
 	}
-	void CheckGrid() // function for checking the grid for matches 
+	void CheckGrid() // function for checking the grid for matches (tutorial code block)
 	{
 		int counter = 1;
 		for(int r = 0; r < rows; r++) // checks for coloums
@@ -141,22 +146,23 @@ public class GameManager : MonoBehaviour
 							tiles [c-2, r].tileObj.SetActive (false);
 						}
 						tiles [c, r] = null; //resets first tile reference
-						tiles [c - 1, r] = null; //resets second tile reference
-						tiles [c - 2, r] = null; //resets third tile reference
+						tiles [c-1, r] = null; //resets second tile reference
+						tiles [c-2, r] = null; //resets third tile reference
 						renewBoard = true;
 					}
 				}
 			}
 		}
-		for(int r = 1; r < cols; r++) // checks for rows
+		for(int c = 0; c < cols; c++) // checks for rows (tutorial code block)
 		{
 			counter = 1;
-			for(int c = 1; c < rows; c++)
+			for(int r = 1; r < rows; r++)
 			{
-				if (tiles [c, r] != null && tiles [c - 1, r] != null) // finds if they exist
+				if (tiles [c, r] != null && tiles [c, r-1] != null) // finds if they exist
 				{
-					if (tiles [c, r].type == tiles [c - 1, r].type) {
-
+					if (tiles [c, r].type == tiles [c, r-1].type) 
+					{
+						counter++;
 					} 
 					else // resets counter
 					{
@@ -164,21 +170,21 @@ public class GameManager : MonoBehaviour
 					}
 					if(counter == 3) // removes three in a row
 					{
-						if(tiles[c,r] != null)
+						if(tiles[c , r] != null)
 						{
-							tiles [c, r].tileObj.SetActive (false);
+							tiles [c,r].tileObj.SetActive (false);
 						}
-						if(tiles[c-1,r] != null)
+						if(tiles[c,r-1] != null)
 						{
-							tiles [c-1, r].tileObj.SetActive (false);
+							tiles [c,r-1].tileObj.SetActive (false);
 						}
-						if(tiles[c-2,r] != null)
+						if(tiles[c,r-2] != null)
 						{
-							tiles [c-2, r].tileObj.SetActive (false);
+							tiles [c,r-2].tileObj.SetActive (false);
 						}
-						tiles [c, r] = null;
-						tiles [c - 1, r] = null;
-						tiles [c - 2, r] = null;
+						tiles [c,r] = null;
+						tiles [c,r-1] = null;
+						tiles [c,r-2] = null;
 						renewBoard = true;
 					}
 				}
@@ -190,11 +196,14 @@ public class GameManager : MonoBehaviour
 			renewBoard = false;
 		}
 	}
-	void MoveCharacterOnGrid () // moves the character on the grid to the matching colour
-	{
-		
-	}
-	void RenewGrid() // renews the grid after a pair of three is taked away
+	//void MoveCharacterOnGrid () // moves the character on the grid to the matching colour (not tutorial code block)
+	//{
+		//if(type == type)
+		//{
+			//
+		//}
+	//}
+	void RenewGrid() // renews the grid after a pair of three is taked away (tutorial code block)
 	{
 		bool anyMoved = false;
 		ShuffleList ();
@@ -202,7 +211,7 @@ public class GameManager : MonoBehaviour
 		{
 			for (int c = 0; c < cols; c++) 
 			{
-				if(r == rows-1 && tiles[c,r] == null)
+				if(r == rows-1 && tiles[c,r] == null) // If the some tile in the top row is empty
 				{
 					Vector3 tilePos = new Vector3 (c, r, 0);
 					for(int n = 0; n < tileBank.Count; n++)
@@ -229,7 +238,7 @@ public class GameManager : MonoBehaviour
 				}
 			}
 		}
-		if (anyMoved) 
+		if (anyMoved) //(tutorial code)
 		{
 			Invoke ("RenewGrid", 0.5f);
 		}
