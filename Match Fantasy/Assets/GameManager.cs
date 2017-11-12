@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.UI;
 using UnityEngine;
 public class Tile
 {
@@ -26,7 +25,7 @@ public class GameManager : MonoBehaviour
 	{
 		System.Random rand = new System.Random ();
 		int r = tileBank.Count;
-		while (r < 1) 
+		while (r > 1) 
 		{
 			r--;
 			int n = rand.Next(r + 1);
@@ -37,7 +36,7 @@ public class GameManager : MonoBehaviour
 	}
     void Start() // Use this for initialization
     {
-        int numCopies = (rows * cols) / 3;
+        int numCopies = (rows * cols);
         for (int i = 0; i < numCopies; i++)
         {
             for (int j = 0; j < tiles.Length; j++)
@@ -119,8 +118,9 @@ public class GameManager : MonoBehaviour
 			{
 				if (tiles [c, r] != null && tiles [c - 1, r] != null) // finds if they exist
 				{
-					if (tiles [c, r].type == tiles [c - 1, r].type) {
-						
+					if (tiles [c, r].type == tiles [c - 1, r].type) 
+					{
+						counter++;
 					} 
 					else // resets counter
 					{
@@ -148,7 +148,7 @@ public class GameManager : MonoBehaviour
 				}
 			}
 		}
-		for(int r = 0; r < cols; r++) // checks for rows
+		for(int r = 1; r < cols; r++) // checks for rows
 		{
 			counter = 1;
 			for(int c = 1; c < rows; c++)
