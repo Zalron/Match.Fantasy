@@ -12,6 +12,14 @@ public class PlayerManager : GameManager
 	}
 	void Update () // Update is called once per frame
 	{
-		if(Typetag == )
+//		if(Typetag == CompareTag)
+//		{
+//			PlayerSprite.transform.Rotate;
+//		}
+	}
+
+	public void SetType(string type)
+	{
+		Typetag = type;
 	}
 }

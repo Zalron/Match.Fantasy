@@ -309,7 +309,7 @@ public class GameManager : MonoBehaviour
 		}
 		if(playerMove)
 		{
-			PlayerManager.SendMessage ("typetag");
+			PlayerManager.SetType(type);
 			playerMove = false;
 		}
 		if(renewBoard) // renews the board
