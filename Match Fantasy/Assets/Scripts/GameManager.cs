@@ -1,6 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+public class DTiles
+{
+    public GameObject dTileObj;
+    public string dType;
+    public DTiles(GameObject dObj, string dT)
+    {
+        dTileObj = dObj;
+        dType = dT;
+    }
+}
 public class Tile // used by the tiles to point to the same tiles when matching (tutorial code)
 {
     public GameObject tileObj;
@@ -15,14 +25,15 @@ public class GameManager : MonoBehaviour
 {
     GameObject tile1 = null; // variales used to keep the first clicked tile
     GameObject tile2 = null; // variable used to keep the second clicked tile
-    public GameObject[] tile; // array called tile that is used by the class to build the match table 
+    public GameObject[] tile; // array called tile that is used by the class to build the match table
+    public GameObject[] DTiles;
     List<GameObject> tileBank = new List<GameObject>();
     static int rows = 8; // how many rows in the match 3 (tutorial code)
     static int cols = 8; // how many columns in the match 3 (tutorial code)
     bool renewBoard = false;
+    DTiles[,] dtiles = new DTiles[cols, rows];
     Tile[,] tiles = new Tile[cols, rows]; // A Array of objects for the tiles for the match 3 (tutorial code)
     public GameObject PlayerSprite = null;
-    public PlayerManager pm;
 	void ShuffleList() // shuffles the list of tiles (tutorial code)
 	{
 		System.Random rand = new System.Random ();
@@ -122,10 +133,11 @@ public class GameManager : MonoBehaviour
 				{
 					if (tiles [c, r].type == tiles [c - 1, r].type) // adds to the counter variable if valid match of tiles
 					{
-                        counter++;
-                        string type = null; // not working please help
-                        string Result = tiles[c, r].type = type; // not working please help
-                        pm.SendMessage(type); // not working please help
+                        counter++;   
+//                        if (tiles[c, r].type == dtiles[c, r].dType)
+//                        {
+//                            PlayerSprite.transform.position = dtiles[c, r].dTileObj.transform.position;
+//                        }
                     } 
 					else // resets counter if no match
 					{
@@ -216,9 +228,6 @@ public class GameManager : MonoBehaviour
 					if (tiles [c, r].type == tiles [c, r-1].type) 
 					{
                         counter++;
-                        string type = ""; // not working please help
-                        string Result = tiles[c, r].type = type; // not working please help
-                        pm.SendMessage(type); // not working please help
                     } 
 					else // resets counter
 					{
