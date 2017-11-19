@@ -15,15 +15,14 @@ public class GameManager : MonoBehaviour
 {
     GameObject tile1 = null; // variales used to keep the first clicked tile
     GameObject tile2 = null; // variable used to keep the second clicked tile
-	public GameObject[] tile; // array called tile that is used by the class to build the match table 
+    public GameObject[] tile; // array called tile that is used by the class to build the match table 
     List<GameObject> tileBank = new List<GameObject>();
-	static int rows = 8; // how many rows in the match 3 (tutorial code)
-	static int cols = 8; // how many columns in the match 3 (tutorial code)
-	bool playerMove = false;
-	bool renewBoard = false;
-	Tile[,] tiles = new Tile[cols, rows]; // A Array of objects for the tiles for the match 3 (tutorial code)
-	public GameObject playersprite = null;
-	public PlayerManager pm = GameObject.Find("PlayerSprite").GetComponent<PlayerManager>();
+    static int rows = 8; // how many rows in the match 3 (tutorial code)
+    static int cols = 8; // how many columns in the match 3 (tutorial code)
+    bool renewBoard = false;
+    Tile[,] tiles = new Tile[cols, rows]; // A Array of objects for the tiles for the match 3 (tutorial code)
+    public GameObject PlayerSprite = null;
+    public PlayerManager pm;
 	void ShuffleList() // shuffles the list of tiles (tutorial code)
 	{
 		System.Random rand = new System.Random ();
@@ -114,7 +113,6 @@ public class GameManager : MonoBehaviour
 	void CheckGrid() // function for checking the grid for matches (tutorial code block)
 	{
 		int counter = 1;
-		string type = "";
 		for(int r = 0; r < rows; r++) // checks for coloums
 		{
 			counter = 1;
@@ -124,8 +122,11 @@ public class GameManager : MonoBehaviour
 				{
 					if (tiles [c, r].type == tiles [c - 1, r].type) // adds to the counter variable if valid match of tiles
 					{
-						counter++;
-					} 
+                        counter++;
+                        string type = null; // not working please help
+                        string Result = tiles[c, r].type = type; // not working please help
+                        pm.SendMessage(type); // not working please help
+                    } 
 					else // resets counter if no match
 					{
 						counter = 1;	
@@ -144,12 +145,10 @@ public class GameManager : MonoBehaviour
 						{
 							tiles [c-2, r].tileObj.SetActive (false);
 						}
-						tiles [c, r] = null; //resets first tile reference
+                        tiles [c, r] = null; //resets first tile reference
 						tiles [c-1, r] = null; //resets second tile reference
 						tiles [c-2, r] = null; //resets third tile reference
-						playerMove = true;
 						renewBoard = true;
-						type = tiles [c, r].type;
 					}
 					if(counter == 4) // removes four in a row (Not tutorial code)
 					{
@@ -169,13 +168,11 @@ public class GameManager : MonoBehaviour
 						{
 							tiles [c-3, r].tileObj.SetActive (false);
 						}
-						tiles [c, r] = null; //resets first tile reference
+                        tiles [c, r] = null; //resets first tile reference
 						tiles [c-1, r] = null; //resets second tile reference
 						tiles [c-2, r] = null; //resets third tile reference
 						tiles [c-3, r] = null; //resets fourth tile reference
-						playerMove = true;
 						renewBoard = true;
-						type = tiles [c, r].type;
 					}
 					if(counter == 5) // removes five in a row (Not tutorial code)
 					{
@@ -199,14 +196,12 @@ public class GameManager : MonoBehaviour
 						{
 							tiles [c-4,r].tileObj.SetActive (false);
 						}
-						tiles [c,r] = null; //resets first tile reference
+                        tiles [c,r] = null; //resets first tile reference
 						tiles [c-1,r] = null; //resets second tile reference
 						tiles [c-2,r] = null; //resets third tile reference
 						tiles [c-3,r] = null; //resets fourth tile reference
 						tiles [c-4,r] = null; //resets fifth tile reference
-						playerMove = true;
 						renewBoard = true;
-						type = tiles [c, r].type;
 					}
 				}
 			}
@@ -220,8 +215,11 @@ public class GameManager : MonoBehaviour
 				{
 					if (tiles [c, r].type == tiles [c, r-1].type) 
 					{
-						counter++;
-					} 
+                        counter++;
+                        string type = ""; // not working please help
+                        string Result = tiles[c, r].type = type; // not working please help
+                        pm.SendMessage(type); // not working please help
+                    } 
 					else // resets counter
 					{
 						counter = 1;	
@@ -240,12 +238,10 @@ public class GameManager : MonoBehaviour
 						{
 							tiles [c,r-2].tileObj.SetActive (false);
 						}
-						tiles [c,r] = null;
-						tiles [c,r-1] = null;
-						tiles [c,r-2] = null;
-						playerMove = true;
+                        tiles[c, r] = null;
+                        tiles[c, r - 1] = null;
+                        tiles[c, r - 2] = null;
 						renewBoard = true;
-						type = tiles [c, r].type;
 					}
 					if (counter == 4) // removes four in a row (Not tutorial code)
 					{
@@ -261,17 +257,15 @@ public class GameManager : MonoBehaviour
 						{
 							tiles [c,r-2].tileObj.SetActive (false);
 						}
-						if(tiles[c,r-3] != null)
-						{
-							tiles [c,r-3].tileObj.SetActive (false); 
-						}
-						tiles [c,r] = null;
+                        if (tiles[c, r - 3] != null)
+                        {
+                            tiles[c, r - 3].tileObj.SetActive(false);
+                        }
+                        tiles [c,r] = null;
 						tiles [c,r-1] = null;
 						tiles [c,r-2] = null;
 						tiles [c,r-3] = null; 
-						playerMove = true;
 						renewBoard = true;
-						type = tiles [c, r].type;
 					}
 					if (counter == 5) // removes five in a row (Not tutorial code)
 					{
@@ -295,22 +289,15 @@ public class GameManager : MonoBehaviour
 						{
 							tiles [c,r-4].tileObj.SetActive (false); 
 						}
-						tiles [c,r] = null;
+                        tiles [c,r] = null;
 						tiles [c,r-1] = null;
 						tiles [c,r-2] = null;
 						tiles [c,r-3] = null; 
 						tiles [c,r-4] = null; 
-						playerMove = true;
 						renewBoard = true;
-						type = tiles [c, r].type;
 					}
 				}
 			}
-		}
-		if(playerMove)
-		{
-			PlayerManager.SetType(type);
-			playerMove = false;
 		}
 		if(renewBoard) // renews the board
 		{

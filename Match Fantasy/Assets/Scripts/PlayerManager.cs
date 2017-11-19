@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 public class PlayerManager : GameManager
 {
-    public GameObject PlayerSprite = null;
     public GameObject[] duegeonTiles;
+    public string type = "";
 	void Start () // Use this for initialization
 	{
 		
@@ -15,7 +15,7 @@ public class PlayerManager : GameManager
 	}
 	public void SetType(string type)
 	{
-        if (type.Tag = duegeonTiles.Comparetag)
+        if (duegeonTiles[0].name == type)
         {
 
         }
