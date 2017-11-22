@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 public class DTiles
@@ -111,7 +112,11 @@ public class GameManager : MonoBehaviour
 					Vector3 tempPos = tile1.transform.position;
 					tile1.transform.position = tile2.transform.position;
 					tile2.transform.position = tempPos; // moves the second tile to the first position
-					tile1 = null; // Resets the touched tile variable
+                    for (int y = 0; y < 5; y++)
+                    {
+                        PlayerSprite.transform.position = new Vector3(0, y, 0);
+                    }
+                    tile1 = null; // Resets the touched tile variable
 					tile2 = null; // Resets the touched tile variable
 				} 
 				else //(tutorial code block)
@@ -131,13 +136,9 @@ public class GameManager : MonoBehaviour
 			{
 				if (tiles [c, r] != null && tiles [c - 1, r] != null) // finds if they exist
 				{
-					if (tiles [c, r].type == tiles [c - 1, r].type) // adds to the counter variable if valid match of tiles
+					if (tiles [c, r].type == tiles [c - 1, r].type) // && tiles[c, r].tileObj == dtiles[c, r].dTileObj) // adds to the counter variable if valid match of tiles
 					{
-                        counter++;   
-//                        if (tiles[c, r].type == dtiles[c, r].dType)
-//                        {
-//                            PlayerSprite.transform.position = dtiles[c, r].dTileObj.transform.position;
-//                        }
+                        counter++;
                     } 
 					else // resets counter if no match
 					{
@@ -225,9 +226,10 @@ public class GameManager : MonoBehaviour
 			{
 				if (tiles [c, r] != null && tiles [c, r-1] != null) // finds if they exist
 				{
-					if (tiles [c, r].type == tiles [c, r-1].type) 
+					if (tiles [c, r].type == tiles [c, r-1].type)// && tiles[c, r].tileObj == dtiles[c, r].dTileObj) 
 					{
                         counter++;
+//                        PlayerSprite.transform.position = dtiles[c, r].dTileObj.transform.position;
                     } 
 					else // resets counter
 					{
