@@ -2,21 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class DTiles
-{
-    public GameObject dTileObj;
-    public string dType;
-    public DTiles(GameObject dObj, string dT)
-    {
-        dTileObj = dObj;
-        dType = dT;
-    }
-}
 public class Tile // used by the tiles to point to the same tiles when matching (tutorial code)
 {
     public GameObject tileObj;
-    public string type;
-    public Tile(GameObject obj, string t)
+    public string type; 
+	public Tile(GameObject obj, string t)
     {
         tileObj = obj;
         type = t;
@@ -26,15 +16,13 @@ public class GameManager : MonoBehaviour
 {
     GameObject tile1 = null; // variales used to keep the first clicked tile
     GameObject tile2 = null; // variable used to keep the second clicked tile
-    public GameObject[] tile; // array called tile that is used by the class to build the match table
-    public GameObject[] DTiles;
+	public GameObject[] tile ; // array called tile that is used by the class to build the match table
     List<GameObject> tileBank = new List<GameObject>();
     static int rows = 8; // how many rows in the match 3 (tutorial code)
     static int cols = 8; // how many columns in the match 3 (tutorial code)
     bool renewBoard = false;
-    DTiles[,] dtiles = new DTiles[cols, rows];
     Tile[,] tiles = new Tile[cols, rows]; // A Array of objects for the tiles for the match 3 (tutorial code)
-    public GameObject PlayerSprite = null;
+	public PlayerManager player;
 	void ShuffleList() // shuffles the list of tiles (tutorial code)
 	{
 		System.Random rand = new System.Random ();
@@ -112,10 +100,6 @@ public class GameManager : MonoBehaviour
 					Vector3 tempPos = tile1.transform.position;
 					tile1.transform.position = tile2.transform.position;
 					tile2.transform.position = tempPos; // moves the second tile to the first position
-                    for (int y = 0; y < 5; y++)
-                    {
-                        PlayerSprite.transform.position = new Vector3(0, y, 0);
-                    }
                     tile1 = null; // Resets the touched tile variable
 					tile2 = null; // Resets the touched tile variable
 				} 
@@ -136,9 +120,9 @@ public class GameManager : MonoBehaviour
 			{
 				if (tiles [c, r] != null && tiles [c - 1, r] != null) // finds if they exist
 				{
-					if (tiles [c, r].type == tiles [c - 1, r].type) // && tiles[c, r].tileObj == dtiles[c, r].dTileObj) // adds to the counter variable if valid match of tiles
+					if (tiles [c, r].type == tiles [c - 1, r].type) // adds to the counter variable if valid match of tiles
 					{
-                        counter++;
+						counter++;
                     } 
 					else // resets counter if no match
 					{
@@ -158,10 +142,14 @@ public class GameManager : MonoBehaviour
 						{
 							tiles [c-2, r].tileObj.SetActive (false);
 						}
-                        tiles [c, r] = null; //resets first tile reference
+						UpdatePlayer (tiles [c, r]);
+
+						tiles [c, r] = null; //resets first tile reference
 						tiles [c-1, r] = null; //resets second tile reference
 						tiles [c-2, r] = null; //resets third tile reference
+
 						renewBoard = true;
+
 					}
 					if(counter == 4) // removes four in a row (Not tutorial code)
 					{
@@ -181,10 +169,13 @@ public class GameManager : MonoBehaviour
 						{
 							tiles [c-3, r].tileObj.SetActive (false);
 						}
-                        tiles [c, r] = null; //resets first tile reference
+						UpdatePlayer (tiles [c, r]);
+
+						tiles [c, r] = null; //resets first tile reference
 						tiles [c-1, r] = null; //resets second tile reference
 						tiles [c-2, r] = null; //resets third tile reference
 						tiles [c-3, r] = null; //resets fourth tile reference
+
 						renewBoard = true;
 					}
 					if(counter == 5) // removes five in a row (Not tutorial code)
@@ -209,11 +200,14 @@ public class GameManager : MonoBehaviour
 						{
 							tiles [c-4,r].tileObj.SetActive (false);
 						}
+						UpdatePlayer (tiles [c, r]);
+
                         tiles [c,r] = null; //resets first tile reference
 						tiles [c-1,r] = null; //resets second tile reference
 						tiles [c-2,r] = null; //resets third tile reference
 						tiles [c-3,r] = null; //resets fourth tile reference
 						tiles [c-4,r] = null; //resets fifth tile reference
+
 						renewBoard = true;
 					}
 				}
@@ -226,10 +220,9 @@ public class GameManager : MonoBehaviour
 			{
 				if (tiles [c, r] != null && tiles [c, r-1] != null) // finds if they exist
 				{
-					if (tiles [c, r].type == tiles [c, r-1].type)// && tiles[c, r].tileObj == dtiles[c, r].dTileObj) 
+					if (tiles [c, r].type == tiles [c, r-1].type)
 					{
                         counter++;
-//                        PlayerSprite.transform.position = dtiles[c, r].dTileObj.transform.position;
                     } 
 					else // resets counter
 					{
@@ -249,9 +242,12 @@ public class GameManager : MonoBehaviour
 						{
 							tiles [c,r-2].tileObj.SetActive (false);
 						}
+						UpdatePlayer (tiles [c, r]);
+
                         tiles[c, r] = null;
                         tiles[c, r - 1] = null;
                         tiles[c, r - 2] = null;
+
 						renewBoard = true;
 					}
 					if (counter == 4) // removes four in a row (Not tutorial code)
@@ -272,10 +268,13 @@ public class GameManager : MonoBehaviour
                         {
                             tiles[c, r - 3].tileObj.SetActive(false);
                         }
+						UpdatePlayer (tiles [c, r]);
+
                         tiles [c,r] = null;
 						tiles [c,r-1] = null;
 						tiles [c,r-2] = null;
 						tiles [c,r-3] = null; 
+
 						renewBoard = true;
 					}
 					if (counter == 5) // removes five in a row (Not tutorial code)
@@ -300,11 +299,14 @@ public class GameManager : MonoBehaviour
 						{
 							tiles [c,r-4].tileObj.SetActive (false); 
 						}
+						UpdatePlayer (tiles [c, r]);
+
                         tiles [c,r] = null;
 						tiles [c,r-1] = null;
 						tiles [c,r-2] = null;
 						tiles [c,r-3] = null; 
 						tiles [c,r-4] = null; 
+
 						renewBoard = true;
 					}
 				}
@@ -354,6 +356,42 @@ public class GameManager : MonoBehaviour
 		if (anyMoved) //(tutorial code)
 		{
 			Invoke ("RenewGrid", 0.5f);
+		}
+	}
+
+	void UpdatePlayer (Tile tile)
+	{
+		if (tile.tileObj.CompareTag ("Red")) 
+		{
+			player.RedTriangle ();
+		} 
+		else if (tile.tileObj.CompareTag ("Cyan")) 
+		{
+			player.Cyan ();
+		} 
+		else if (tile.tileObj.CompareTag ("Yellow")) 
+		{
+			player.Yellow ();
+		} 
+		else if (tile.tileObj.CompareTag ("Orange")) 
+		{
+			player.Orange ();
+		} 
+		else if (tile.tileObj.CompareTag ("Purple")) 
+		{
+			player.Purple ();
+		} 
+		else if (tile.tileObj.CompareTag ("Green")) 
+		{
+			player.GreenCircle ();
+		} 
+		else if (tile.tileObj.CompareTag ("Blue")) 
+		{
+			player.BlueSquare ();
+		} 
+		else 
+		{
+			Debug.LogError ("Something has gone very wrong");
 		}
 	}
 }
