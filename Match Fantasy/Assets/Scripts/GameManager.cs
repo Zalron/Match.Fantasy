@@ -70,8 +70,8 @@ public class GameManager : MonoBehaviour
 	}
 	void Update () // Update is called once per frame
     {
-		CheckGrid (); //(tutorial code block)
-		if (Input.GetMouseButtonDown (0)) // casting a ray into the scene if the mouse was clicked for a hit on the first tile (tutorial code)
+        CheckGrid(); //(tutorial code block)
+        if (Input.GetMouseButtonDown (0)) // casting a ray into the scene if the mouse was clicked for a hit on the first tile (tutorial code)
 		{
 			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 			RaycastHit2D hit = Physics2D.GetRayIntersection (ray, 1000);
@@ -109,7 +109,7 @@ public class GameManager : MonoBehaviour
 				}
 			}
 		}
-	}
+    }
 	void CheckGrid() // function for checking the grid for matches (tutorial code block)
 	{
 		int counter = 1;
