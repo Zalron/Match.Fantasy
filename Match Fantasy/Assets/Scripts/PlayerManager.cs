@@ -14,50 +14,41 @@ public class DTiles
 }
 public class PlayerManager : MonoBehaviour
 {
-	static int rows = 8; // how many rows in the match 3 (tutorial code)
-	static int cols = 8; // how many columns in the match 3 (tutorial code)
 	public GameObject[] DTiles;
 	public GameObject PlayerSprite = null;
-	public void RedTriangle()
+	public void Red()
 	{
 		print ("Red");
-		//PlayerSprite.transform.position = new Vector3 (-2,1,0);
 		PlayerSprite.transform.position = DTiles[0].transform.position;
 	}
-	public void BlueSquare()
+	public void Blue()
 	{
 		print ("Blue");
-		PlayerSprite.transform.position = new Vector3 (-3,0,0);
-		PlayerSprite.transform.position = DTiles[2].transform.position;
+		PlayerSprite.transform.position = DTiles[3].transform.position;
 	}
-	public void GreenCircle()
+	public void Green()
 	{
 		print ("Green");
-		PlayerSprite.transform.position = new Vector3 (-2,0,0);
 		PlayerSprite.transform.position = DTiles[1].transform.position;
 	}
 	public void Yellow()
 	{
 		print ("Yellow");
-		PlayerSprite.transform.position = new Vector3 (-3,1,0);
-		PlayerSprite.transform.position = DTiles[0].transform.position;
+		PlayerSprite.transform.position = DTiles[5].transform.position;
 	}
 	public void Cyan()
 	{
 		print ("Cyan");
-		PlayerSprite.transform.position = new Vector3 (-2,2,0);
-		PlayerSprite.transform.position = DTiles[0].transform.position;
+		PlayerSprite.transform.position = DTiles[6].transform.position;
 	}
 	public void Purple()
 	{
 		print ("Purple");
-		PlayerSprite.transform.position = new Vector3 (-3,3,0);
-		PlayerSprite.transform.position = DTiles[0].transform.position;
+		PlayerSprite.transform.position = DTiles[4].transform.position;
 	}
 	public void Orange()
 	{
 		print ("Orange");
-		PlayerSprite.transform.position = new Vector3 (-2,3,0);
-		PlayerSprite.transform.position = DTiles[0].transform.position;
+		PlayerSprite.transform.position = DTiles[2].transform.position;
 	}
 }

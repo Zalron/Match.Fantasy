@@ -143,11 +143,9 @@ public class GameManager : MonoBehaviour
 							tiles [c-2, r].tileObj.SetActive (false);
 						}
 						UpdatePlayer (tiles [c, r]);
-
 						tiles [c, r] = null; //resets first tile reference
 						tiles [c-1, r] = null; //resets second tile reference
 						tiles [c-2, r] = null; //resets third tile reference
-
 						renewBoard = true;
 
 					}
@@ -170,12 +168,10 @@ public class GameManager : MonoBehaviour
 							tiles [c-3, r].tileObj.SetActive (false);
 						}
 						UpdatePlayer (tiles [c, r]);
-
 						tiles [c, r] = null; //resets first tile reference
 						tiles [c-1, r] = null; //resets second tile reference
 						tiles [c-2, r] = null; //resets third tile reference
 						tiles [c-3, r] = null; //resets fourth tile reference
-
 						renewBoard = true;
 					}
 					if(counter == 5) // removes five in a row (Not tutorial code)
@@ -201,13 +197,11 @@ public class GameManager : MonoBehaviour
 							tiles [c-4,r].tileObj.SetActive (false);
 						}
 						UpdatePlayer (tiles [c, r]);
-
                         tiles [c,r] = null; //resets first tile reference
 						tiles [c-1,r] = null; //resets second tile reference
 						tiles [c-2,r] = null; //resets third tile reference
 						tiles [c-3,r] = null; //resets fourth tile reference
 						tiles [c-4,r] = null; //resets fifth tile reference
-
 						renewBoard = true;
 					}
 				}
@@ -243,11 +237,9 @@ public class GameManager : MonoBehaviour
 							tiles [c,r-2].tileObj.SetActive (false);
 						}
 						UpdatePlayer (tiles [c, r]);
-
                         tiles[c, r] = null;
                         tiles[c, r - 1] = null;
                         tiles[c, r - 2] = null;
-
 						renewBoard = true;
 					}
 					if (counter == 4) // removes four in a row (Not tutorial code)
@@ -269,12 +261,10 @@ public class GameManager : MonoBehaviour
                             tiles[c, r - 3].tileObj.SetActive(false);
                         }
 						UpdatePlayer (tiles [c, r]);
-
                         tiles [c,r] = null;
 						tiles [c,r-1] = null;
 						tiles [c,r-2] = null;
 						tiles [c,r-3] = null; 
-
 						renewBoard = true;
 					}
 					if (counter == 5) // removes five in a row (Not tutorial code)
@@ -300,13 +290,11 @@ public class GameManager : MonoBehaviour
 							tiles [c,r-4].tileObj.SetActive (false); 
 						}
 						UpdatePlayer (tiles [c, r]);
-
                         tiles [c,r] = null;
 						tiles [c,r-1] = null;
 						tiles [c,r-2] = null;
 						tiles [c,r-3] = null; 
 						tiles [c,r-4] = null; 
-
 						renewBoard = true;
 					}
 				}
@@ -358,12 +346,11 @@ public class GameManager : MonoBehaviour
 			Invoke ("RenewGrid", 0.5f);
 		}
 	}
-
 	void UpdatePlayer (Tile tile)
 	{
 		if (tile.tileObj.CompareTag ("Red")) 
 		{
-			player.RedTriangle ();
+			player.Red ();
 		} 
 		else if (tile.tileObj.CompareTag ("Cyan")) 
 		{
@@ -383,11 +370,11 @@ public class GameManager : MonoBehaviour
 		} 
 		else if (tile.tileObj.CompareTag ("Green")) 
 		{
-			player.GreenCircle ();
+			player.Green ();
 		} 
 		else if (tile.tileObj.CompareTag ("Blue")) 
 		{
-			player.BlueSquare ();
+			player.Blue ();
 		} 
 		else 
 		{
