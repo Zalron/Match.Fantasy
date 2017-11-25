@@ -16,77 +16,89 @@ public class GameManager : MonoBehaviour
 {
     GameObject tile1 = null; // variales used to keep the first clicked tile
     GameObject tile2 = null; // variable used to keep the second clicked tile
-	public GameObject[] tile ; // array called tile that is used by the class to build the match table
+    public GameObject[] tile; // array called tile that is used by the class to build the match table
     List<GameObject> tileBank = new List<GameObject>();
     static int rows = 8; // how many rows in the match 3 (tutorial code)
     static int cols = 8; // how many columns in the match 3 (tutorial code)
     bool renewBoard = false;
     Tile[,] tiles = new Tile[cols, rows]; // A Array of objects for the tiles for the match 3 (tutorial code)
-	public PlayerManager player;
-	void ShuffleList() // shuffles the list of tiles (tutorial code)
-	{
-		System.Random rand = new System.Random ();
-		int r = tileBank.Count;
-		while (r > 1) 
-		{
-			r--;
-			int n = rand.Next(r + 1);
-			GameObject val = tileBank [n];
-			tileBank [n] = tileBank [r];
-			tileBank [r] = val;
-		}
-	}
+    public PlayerManager player;
+    void ShuffleList() // shuffles the list of tiles (tutorial code)
+    {
+        System.Random rand = new System.Random();
+        int r = tileBank.Count;
+        while (r > 1)
+        {
+            r--;
+            int n = rand.Next(r + 1);
+            GameObject val = tileBank[n];
+            tileBank[n] = tileBank[r];
+            tileBank[r] = val;
+        }
+    }
     void Start() // Use this for initialization
     {
-		int numCopies = (rows * cols); // (tutorial code block)
-		for (int i = 0; i < numCopies; i++) // creating copies so that we don't run out of copies (tutorial code)
+        int numCopies = (rows * cols); // (tutorial code block)
+        for (int i = 0; i < numCopies; i++) // creating copies so that we don't run out of copies (tutorial code)
         {
             for (int j = 0; j < tile.Length; j++)
             {
-                GameObject o = (GameObject) Instantiate(tile[j], new Vector3(-10, -10, 0), tile[j].transform.rotation);
-				o.SetActive (false);
-				tileBank.Add(o);
+                GameObject o = (GameObject)Instantiate(tile[j], new Vector3(-10, -10, 0), tile[j].transform.rotation);
+                o.SetActive(false);
+                tileBank.Add(o);
             }
         }
-		ShuffleList ();
-		for (int r = 0; r < rows; r++)// (tutorial code block)
+        ShuffleList();
+        for (int r = 0; r < rows; r++)// (tutorial code block)
         {
             for (int c = 0; c < cols; c++)
             {
                 Vector3 tilePos = new Vector3(c, r, 0);
-				for (int n = 0; n < tileBank.Count; n++) 
-				{
-					GameObject o = tileBank [n];
-					if (!o.activeSelf) 
-					{
-						o.transform.position = new Vector3 (tilePos.x, tilePos.y, tilePos.z);
-						o.SetActive (true);
-						tiles [c, r] = new Tile (o, o.name);
-						n = tileBank.Count + 1;
-					}
-				}
+                for (int n = 0; n < tileBank.Count; n++)
+                {
+                    GameObject o = tileBank[n];
+                    if (!o.activeSelf)
+                    {
+                        o.transform.position = new Vector3(tilePos.x, tilePos.y, tilePos.z);
+                        o.SetActive(true);
+                        tiles[c, r] = new Tile(o, o.name);
+                        n = tileBank.Count + 1;
+                    }
+                }
             }
         }
-	}
-	void Update () // Update is called once per frame
+        for (int i = 0; i < 10; i++) // runs the CheckGrid function 10 times to get rid of the matchs made in the generation phase
+        {
+            CheckGrid();
+        }
+    }
+    void Update()
     {
-        CheckGrid(); //(tutorial code block)
+        RayCastCamera(); // The function RayCastCamera
+    }
+    void RayCastCamera ()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            bool ifHit = true;
+        }
+        CheckGrid();
         if (Input.GetMouseButtonDown (0)) // casting a ray into the scene if the mouse was clicked for a hit on the first tile (tutorial code)
 		{
-			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
-			RaycastHit2D hit = Physics2D.GetRayIntersection (ray, 1000);
-			if (hit) // makes the hit tile in the variable (tutorial code)
+			Ray firstRay = Camera.main.ScreenPointToRay (Input.mousePosition);
+			RaycastHit2D firstHit = Physics2D.GetRayIntersection (firstRay, 1000);
+			if (firstHit) // makes the hit tile in the variable (tutorial code)
 			{
-				tile1 = hit.collider.gameObject;
+				tile1 = firstHit.collider.gameObject;
 			}
 		}
 		else if(Input.GetMouseButtonUp(0)&& tile1) // casting a ray into the scene if the mouse was clicked for a hit on the second tile (tutorial code)
 		{
-			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
-			RaycastHit2D hit = Physics2D.GetRayIntersection (ray, 1000);
-			if (hit) // makes the hit tile in the variable tile2
+			Ray secondRay = Camera.main.ScreenPointToRay (Input.mousePosition);
+			RaycastHit2D secondHit = Physics2D.GetRayIntersection (secondRay, 1000);
+			if (secondHit) // makes the hit tile in the variable tile2
 			{
-				tile2 = hit.collider.gameObject;
+				tile2 = secondHit.collider.gameObject;
 			}
 			if (tile1 && tile2) // runs if their are two tiles clicked (tutorial code)
 			{
@@ -306,6 +318,11 @@ public class GameManager : MonoBehaviour
 			renewBoard = false;
 		}
 	}
+    void CountScore()
+    {
+        int scoreCounter = 0;
+        int moveCounter = 0;
+    }
 	void RenewGrid() // renews the grid after a pair of three is taked away (tutorial code block)
 	{
 		bool anyMoved = false;
