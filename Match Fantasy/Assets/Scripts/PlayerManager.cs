@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class DTiles // used by the tiles to point to the same tiles when matching (tutorial code)
+public class DTiles // used by the tiles to point to the same tiles when matching (Not tutorial code)
 {
     public GameObject tileObj;
     public string type;
@@ -11,7 +11,7 @@ public class DTiles // used by the tiles to point to the same tiles when matchin
         type = t;
     }
 }
-public class PlayerManager : MonoBehaviour
+public class PlayerManager : MonoBehaviour //(Not tutorial code)
 {
     public GameObject[] DTiles;
 	public GameObject PlayerSprite = null;
@@ -88,7 +88,7 @@ public class PlayerManager : MonoBehaviour
                 print("There is something to the right of the object!");
                 if (CompareTag("Orange"))
                 {
-                    Orange();
+                    //Orange();
                 }
                 if (CompareTag("Red"))
                 {
