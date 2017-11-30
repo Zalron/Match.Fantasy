@@ -139,7 +139,7 @@ public class GameManager : MonoBehaviour
 					else // resets counter if no match
 					{
 						counter = 1;
-                        scoreCounterNumber = 0;
+                        //scoreCounterNumber = 0;
 
                     }
 					if(counter == 3 && scoreCounterNumber == 3) // removes three in a row (tutorial code)
@@ -156,7 +156,7 @@ public class GameManager : MonoBehaviour
 						{
 							tiles [c-2, r].tileObj.SetActive (false);
 						}
-                        CountScore(scoreCounterNumber);
+                        CountScore(scoreCounterNumber=3);
                         UpdatePlayer (tiles [c, r]);
 						tiles [c, r] = null; //resets first tile reference
 						tiles [c-1, r] = null; //resets second tile reference
@@ -182,7 +182,7 @@ public class GameManager : MonoBehaviour
 						{
 							tiles [c-3, r].tileObj.SetActive (false);
 						}
-                        CountScore(scoreCounterNumber);
+                        CountScore(scoreCounterNumber=4);
                         UpdatePlayer (tiles [c, r]);
 						tiles [c, r] = null; //resets first tile reference
 						tiles [c-1, r] = null; //resets second tile reference
@@ -212,7 +212,7 @@ public class GameManager : MonoBehaviour
 						{
 							tiles [c-4,r].tileObj.SetActive (false);
 						}
-                        CountScore(scoreCounterNumber);
+                        CountScore(scoreCounterNumber=5);
                         UpdatePlayer (tiles [c, r]);
                         tiles [c,r] = null; //resets first tile reference
 						tiles [c-1,r] = null; //resets second tile reference
@@ -239,10 +239,10 @@ public class GameManager : MonoBehaviour
 					else // resets counter
 					{
 						counter = 1;
-                        scoreCounterNumber = 0;
+                        //scoreCounterNumber = 0;
 
                     }
-					if(counter == 3 && scoreCounterNumber == 3) // removes three in a row (tutorial code)
+					if(counter == 3  &&scoreCounterNumber == 3) // removes three in a row (tutorial code)
 					{
 						if(tiles[c,r] != null)
 						{
@@ -256,7 +256,7 @@ public class GameManager : MonoBehaviour
 						{
 							tiles [c,r-2].tileObj.SetActive (false);
 						}
-                        CountScore(scoreCounterNumber);
+                        CountScore(scoreCounterNumber=3);
                         UpdatePlayer (tiles [c, r]);
                         tiles[c, r] = null;
                         tiles[c, r - 1] = null;
@@ -281,12 +281,12 @@ public class GameManager : MonoBehaviour
                         {
                             tiles[c, r - 3].tileObj.SetActive(false);
                         }
-                        CountScore(scoreCounterNumber);
+                        CountScore(scoreCounterNumber=4);
                         UpdatePlayer (tiles [c, r]);
                         tiles [c,r] = null;
 						tiles [c,r-1] = null;
 						tiles [c,r-2] = null;
-						tiles [c,r-3] = null; 
+						tiles [c,r-3] = null;
 						renewBoard = true;
 					}
 					if (counter == 5 && scoreCounterNumber == 5) // removes five in a row (Not tutorial code)
@@ -311,13 +311,13 @@ public class GameManager : MonoBehaviour
 						{
 							tiles [c,r-4].tileObj.SetActive (false); 
 						}
-                        CountScore(scoreCounterNumber);
+                        CountScore(scoreCounterNumber=5);
                         UpdatePlayer (tiles [c, r]);
                         tiles [c,r] = null;
 						tiles [c,r-1] = null;
 						tiles [c,r-2] = null;
 						tiles [c,r-3] = null; 
-						tiles [c,r-4] = null; 
+						tiles [c,r-4] = null;
 						renewBoard = true;
 					}
 				}

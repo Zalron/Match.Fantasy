@@ -17,6 +17,6 @@ public class ScoreAdder : MonoBehaviour //(Not tutorial code)
 	}
     public void ScoreCounter(int scoreCounterNumber)
     {
-        scoreCounter.text = scoreCounterNumber.ToString();
+		scoreCounter.text = "Score: " + scoreCounterNumber.ToString();
     }
 }
