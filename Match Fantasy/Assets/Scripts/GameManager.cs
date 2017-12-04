@@ -139,10 +139,10 @@ public class GameManager : MonoBehaviour
 					else // resets counter if no match
 					{
 						counter = 1;
-                        scoreCounterNumber = 0;
+                        //scoreCounterNumber = 0;
 
                     }
-					if(counter == 3 && scoreCounterNumber == 3) // removes three in a row (tutorial code)
+					if(counter == 3)// && scoreCounterNumber == 3) // removes three in a row (tutorial code)
 					{
 						if(tiles[c,r] != null)
 						{
@@ -156,7 +156,11 @@ public class GameManager : MonoBehaviour
 						{
 							tiles [c-2, r].tileObj.SetActive (false);
 						}
-                        CountScore(scoreCounterNumber);
+<<<<<<< HEAD
+                        //CountScore(scoreCounterNumber);
+=======
+                        CountScore(scoreCounterNumber=3);
+>>>>>>> 2ba518e53a46c500dadce7aa285a311de6491fb7
                         UpdatePlayer (tiles [c, r]);
 						tiles [c, r] = null; //resets first tile reference
 						tiles [c-1, r] = null; //resets second tile reference
@@ -164,7 +168,7 @@ public class GameManager : MonoBehaviour
 						renewBoard = true;
 
 					}
-					if(counter == 4 && scoreCounterNumber == 4) // removes four in a row (Not tutorial code)
+					if(counter == 4)// && scoreCounterNumber == 4) // removes four in a row (Not tutorial code)
 					{
 						if(tiles[c,r] != null)
 						{
@@ -182,7 +186,11 @@ public class GameManager : MonoBehaviour
 						{
 							tiles [c-3, r].tileObj.SetActive (false);
 						}
-                        CountScore(scoreCounterNumber);
+<<<<<<< HEAD
+                        //CountScore(scoreCounterNumber);
+=======
+                        CountScore(scoreCounterNumber=4);
+>>>>>>> 2ba518e53a46c500dadce7aa285a311de6491fb7
                         UpdatePlayer (tiles [c, r]);
 						tiles [c, r] = null; //resets first tile reference
 						tiles [c-1, r] = null; //resets second tile reference
@@ -190,7 +198,7 @@ public class GameManager : MonoBehaviour
 						tiles [c-3, r] = null; //resets fourth tile reference
 						renewBoard = true;
 					}
-					if(counter == 5 && scoreCounterNumber == 5) // removes five in a row (Not tutorial code)
+					if(counter == 5)// && scoreCounterNumber == 5) // removes five in a row (Not tutorial code)
 					{
 						if(tiles[c,r] != null)
 						{
@@ -212,7 +220,11 @@ public class GameManager : MonoBehaviour
 						{
 							tiles [c-4,r].tileObj.SetActive (false);
 						}
-                        CountScore(scoreCounterNumber);
+<<<<<<< HEAD
+                        //CountScore(scoreCounterNumber);
+=======
+                        CountScore(scoreCounterNumber=5);
+>>>>>>> 2ba518e53a46c500dadce7aa285a311de6491fb7
                         UpdatePlayer (tiles [c, r]);
                         tiles [c,r] = null; //resets first tile reference
 						tiles [c-1,r] = null; //resets second tile reference
@@ -239,10 +251,14 @@ public class GameManager : MonoBehaviour
 					else // resets counter
 					{
 						counter = 1;
-                        scoreCounterNumber = 0;
+                        //scoreCounterNumber = 0;
 
                     }
-					if(counter == 3 && scoreCounterNumber == 3) // removes three in a row (tutorial code)
+<<<<<<< HEAD
+					if(counter == 3)// && scoreCounterNumber == 3) // removes three in a row (tutorial code)
+=======
+					if(counter == 3  &&scoreCounterNumber == 3) // removes three in a row (tutorial code)
+>>>>>>> 2ba518e53a46c500dadce7aa285a311de6491fb7
 					{
 						if(tiles[c,r] != null)
 						{
@@ -256,14 +272,18 @@ public class GameManager : MonoBehaviour
 						{
 							tiles [c,r-2].tileObj.SetActive (false);
 						}
-                        CountScore(scoreCounterNumber);
+<<<<<<< HEAD
+                        //CountScore(scoreCounterNumber);
+=======
+                        CountScore(scoreCounterNumber=3);
+>>>>>>> 2ba518e53a46c500dadce7aa285a311de6491fb7
                         UpdatePlayer (tiles [c, r]);
                         tiles[c, r] = null;
                         tiles[c, r - 1] = null;
                         tiles[c, r - 2] = null;
 						renewBoard = true;
 					}
-					if (counter == 4 && scoreCounterNumber == 4) // removes four in a row (Not tutorial code)
+					if (counter == 4)// && scoreCounterNumber == 4) // removes four in a row (Not tutorial code)
 					{
 						if(tiles[c,r] != null)
 						{
@@ -281,15 +301,19 @@ public class GameManager : MonoBehaviour
                         {
                             tiles[c, r - 3].tileObj.SetActive(false);
                         }
-                        CountScore(scoreCounterNumber);
+<<<<<<< HEAD
+                        //CountScore(scoreCounterNumber);
+=======
+                        CountScore(scoreCounterNumber=4);
+>>>>>>> 2ba518e53a46c500dadce7aa285a311de6491fb7
                         UpdatePlayer (tiles [c, r]);
                         tiles [c,r] = null;
 						tiles [c,r-1] = null;
 						tiles [c,r-2] = null;
-						tiles [c,r-3] = null; 
+						tiles [c,r-3] = null;
 						renewBoard = true;
 					}
-					if (counter == 5 && scoreCounterNumber == 5) // removes five in a row (Not tutorial code)
+					if (counter == 5)// && scoreCounterNumber == 5) // removes five in a row (Not tutorial code)
 					{
 						if(tiles[c,r] != null)
 						{
@@ -311,13 +335,17 @@ public class GameManager : MonoBehaviour
 						{
 							tiles [c,r-4].tileObj.SetActive (false); 
 						}
-                        CountScore(scoreCounterNumber);
+<<<<<<< HEAD
+                        //CountScore(scoreCounterNumber);
+=======
+                        CountScore(scoreCounterNumber=5);
+>>>>>>> 2ba518e53a46c500dadce7aa285a311de6491fb7
                         UpdatePlayer (tiles [c, r]);
                         tiles [c,r] = null;
 						tiles [c,r-1] = null;
 						tiles [c,r-2] = null;
 						tiles [c,r-3] = null; 
-						tiles [c,r-4] = null; 
+						tiles [c,r-4] = null;
 						renewBoard = true;
 					}
 				}
@@ -329,10 +357,10 @@ public class GameManager : MonoBehaviour
 			renewBoard = false;
 		}
 	}
-    void CountScore(int scoreCounterNumber)
-    {
-        score.ScoreCounter(scoreCounterNumber);
-    }
+    //void CountScore(int scoreCounterNumber)
+    //{
+    //    score.ScoreCounter(scoreCounterNumber);
+    //}
 	void RenewGrid() // renews the grid after a pair of three is taked away (tutorial code block)
 	{
 		bool anyMoved = false;
