@@ -156,15 +156,6 @@ public class GameManager : MonoBehaviour
 						{
 							tiles [c-2, r].tileObj.SetActive (false);
 						}
-<<<<<<< HEAD
-<<<<<<< HEAD
-                        //CountScore(scoreCounterNumber);
-=======
-                        CountScore(scoreCounterNumber=3);
->>>>>>> 2ba518e53a46c500dadce7aa285a311de6491fb7
-=======
-                        CountScore(scoreCounterNumber=3);
->>>>>>> 2ba518e53a46c500dadce7aa285a311de6491fb7
                         UpdatePlayer (tiles [c, r]);
 						tiles [c, r] = null; //resets first tile reference
 						tiles [c-1, r] = null; //resets second tile reference
@@ -190,15 +181,6 @@ public class GameManager : MonoBehaviour
 						{
 							tiles [c-3, r].tileObj.SetActive (false);
 						}
-<<<<<<< HEAD
-<<<<<<< HEAD
-                        //CountScore(scoreCounterNumber);
-=======
-                        CountScore(scoreCounterNumber=4);
->>>>>>> 2ba518e53a46c500dadce7aa285a311de6491fb7
-=======
-                        CountScore(scoreCounterNumber=4);
->>>>>>> 2ba518e53a46c500dadce7aa285a311de6491fb7
                         UpdatePlayer (tiles [c, r]);
 						tiles [c, r] = null; //resets first tile reference
 						tiles [c-1, r] = null; //resets second tile reference
@@ -228,15 +210,6 @@ public class GameManager : MonoBehaviour
 						{
 							tiles [c-4,r].tileObj.SetActive (false);
 						}
-<<<<<<< HEAD
-<<<<<<< HEAD
-                        //CountScore(scoreCounterNumber);
-=======
-                        CountScore(scoreCounterNumber=5);
->>>>>>> 2ba518e53a46c500dadce7aa285a311de6491fb7
-=======
-                        CountScore(scoreCounterNumber=5);
->>>>>>> 2ba518e53a46c500dadce7aa285a311de6491fb7
                         UpdatePlayer (tiles [c, r]);
                         tiles [c,r] = null; //resets first tile reference
 						tiles [c-1,r] = null; //resets second tile reference
@@ -264,17 +237,8 @@ public class GameManager : MonoBehaviour
 					{
 						counter = 1;
                         //scoreCounterNumber = 0;
-
                     }
-<<<<<<< HEAD
-<<<<<<< HEAD
-					if(counter == 3)// && scoreCounterNumber == 3) // removes three in a row (tutorial code)
-=======
 					if(counter == 3  &&scoreCounterNumber == 3) // removes three in a row (tutorial code)
->>>>>>> 2ba518e53a46c500dadce7aa285a311de6491fb7
-=======
-					if(counter == 3  &&scoreCounterNumber == 3) // removes three in a row (tutorial code)
->>>>>>> 2ba518e53a46c500dadce7aa285a311de6491fb7
 					{
 						if(tiles[c,r] != null)
 						{
@@ -288,15 +252,6 @@ public class GameManager : MonoBehaviour
 						{
 							tiles [c,r-2].tileObj.SetActive (false);
 						}
-<<<<<<< HEAD
-<<<<<<< HEAD
-                        //CountScore(scoreCounterNumber);
-=======
-                        CountScore(scoreCounterNumber=3);
->>>>>>> 2ba518e53a46c500dadce7aa285a311de6491fb7
-=======
-                        CountScore(scoreCounterNumber=3);
->>>>>>> 2ba518e53a46c500dadce7aa285a311de6491fb7
                         UpdatePlayer (tiles [c, r]);
                         tiles[c, r] = null;
                         tiles[c, r - 1] = null;
@@ -321,15 +276,6 @@ public class GameManager : MonoBehaviour
                         {
                             tiles[c, r - 3].tileObj.SetActive(false);
                         }
-<<<<<<< HEAD
-<<<<<<< HEAD
-                        //CountScore(scoreCounterNumber);
-=======
-                        CountScore(scoreCounterNumber=4);
->>>>>>> 2ba518e53a46c500dadce7aa285a311de6491fb7
-=======
-                        CountScore(scoreCounterNumber=4);
->>>>>>> 2ba518e53a46c500dadce7aa285a311de6491fb7
                         UpdatePlayer (tiles [c, r]);
                         tiles [c,r] = null;
 						tiles [c,r-1] = null;
@@ -359,15 +305,6 @@ public class GameManager : MonoBehaviour
 						{
 							tiles [c,r-4].tileObj.SetActive (false); 
 						}
-<<<<<<< HEAD
-<<<<<<< HEAD
-                        //CountScore(scoreCounterNumber);
-=======
-                        CountScore(scoreCounterNumber=5);
->>>>>>> 2ba518e53a46c500dadce7aa285a311de6491fb7
-=======
-                        CountScore(scoreCounterNumber=5);
->>>>>>> 2ba518e53a46c500dadce7aa285a311de6491fb7
                         UpdatePlayer (tiles [c, r]);
                         tiles [c,r] = null;
 						tiles [c,r-1] = null;
