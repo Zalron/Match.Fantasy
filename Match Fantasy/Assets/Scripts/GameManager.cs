@@ -157,7 +157,11 @@ public class GameManager : MonoBehaviour
 							tiles [c-2, r].tileObj.SetActive (false);
 						}
 <<<<<<< HEAD
+<<<<<<< HEAD
                         //CountScore(scoreCounterNumber);
+=======
+                        CountScore(scoreCounterNumber=3);
+>>>>>>> 2ba518e53a46c500dadce7aa285a311de6491fb7
 =======
                         CountScore(scoreCounterNumber=3);
 >>>>>>> 2ba518e53a46c500dadce7aa285a311de6491fb7
@@ -187,7 +191,11 @@ public class GameManager : MonoBehaviour
 							tiles [c-3, r].tileObj.SetActive (false);
 						}
 <<<<<<< HEAD
+<<<<<<< HEAD
                         //CountScore(scoreCounterNumber);
+=======
+                        CountScore(scoreCounterNumber=4);
+>>>>>>> 2ba518e53a46c500dadce7aa285a311de6491fb7
 =======
                         CountScore(scoreCounterNumber=4);
 >>>>>>> 2ba518e53a46c500dadce7aa285a311de6491fb7
@@ -221,7 +229,11 @@ public class GameManager : MonoBehaviour
 							tiles [c-4,r].tileObj.SetActive (false);
 						}
 <<<<<<< HEAD
+<<<<<<< HEAD
                         //CountScore(scoreCounterNumber);
+=======
+                        CountScore(scoreCounterNumber=5);
+>>>>>>> 2ba518e53a46c500dadce7aa285a311de6491fb7
 =======
                         CountScore(scoreCounterNumber=5);
 >>>>>>> 2ba518e53a46c500dadce7aa285a311de6491fb7
@@ -255,7 +267,11 @@ public class GameManager : MonoBehaviour
 
                     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 					if(counter == 3)// && scoreCounterNumber == 3) // removes three in a row (tutorial code)
+=======
+					if(counter == 3  &&scoreCounterNumber == 3) // removes three in a row (tutorial code)
+>>>>>>> 2ba518e53a46c500dadce7aa285a311de6491fb7
 =======
 					if(counter == 3  &&scoreCounterNumber == 3) // removes three in a row (tutorial code)
 >>>>>>> 2ba518e53a46c500dadce7aa285a311de6491fb7
@@ -273,7 +289,11 @@ public class GameManager : MonoBehaviour
 							tiles [c,r-2].tileObj.SetActive (false);
 						}
 <<<<<<< HEAD
+<<<<<<< HEAD
                         //CountScore(scoreCounterNumber);
+=======
+                        CountScore(scoreCounterNumber=3);
+>>>>>>> 2ba518e53a46c500dadce7aa285a311de6491fb7
 =======
                         CountScore(scoreCounterNumber=3);
 >>>>>>> 2ba518e53a46c500dadce7aa285a311de6491fb7
@@ -302,7 +322,11 @@ public class GameManager : MonoBehaviour
                             tiles[c, r - 3].tileObj.SetActive(false);
                         }
 <<<<<<< HEAD
+<<<<<<< HEAD
                         //CountScore(scoreCounterNumber);
+=======
+                        CountScore(scoreCounterNumber=4);
+>>>>>>> 2ba518e53a46c500dadce7aa285a311de6491fb7
 =======
                         CountScore(scoreCounterNumber=4);
 >>>>>>> 2ba518e53a46c500dadce7aa285a311de6491fb7
@@ -336,7 +360,11 @@ public class GameManager : MonoBehaviour
 							tiles [c,r-4].tileObj.SetActive (false); 
 						}
 <<<<<<< HEAD
+<<<<<<< HEAD
                         //CountScore(scoreCounterNumber);
+=======
+                        CountScore(scoreCounterNumber=5);
+>>>>>>> 2ba518e53a46c500dadce7aa285a311de6491fb7
 =======
                         CountScore(scoreCounterNumber=5);
 >>>>>>> 2ba518e53a46c500dadce7aa285a311de6491fb7

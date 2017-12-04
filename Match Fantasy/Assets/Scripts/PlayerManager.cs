@@ -16,6 +16,7 @@ public class PlayerManager : MonoBehaviour //(Not tutorial code)
     public GameObject[] DTiles;
 	public GameObject PlayerSprite = null;
 <<<<<<< HEAD
+<<<<<<< HEAD
     public string[] nsew = new string[4];
     void Start()
     {
@@ -158,6 +159,8 @@ public class PlayerManager : MonoBehaviour //(Not tutorial code)
                 break;
         }
 =======
+=======
+>>>>>>> 2ba518e53a46c500dadce7aa285a311de6491fb7
 	string[] nsew = new string[4];
 
 	int contains(string value)
@@ -221,6 +224,7 @@ public class PlayerManager : MonoBehaviour //(Not tutorial code)
 		print ("Orange");
 		PlayerSprite.transform.position = DTiles[2].transform.position;
         CheckPosition();
+<<<<<<< HEAD
 >>>>>>> 2ba518e53a46c500dadce7aa285a311de6491fb7
     }
 
@@ -230,6 +234,8 @@ public class PlayerManager : MonoBehaviour //(Not tutorial code)
         nsew[1] = UpdateDirection(Vector2.down);
         nsew[2] = UpdateDirection(Vector2.right);
         nsew[3] = UpdateDirection(Vector2.left);
+=======
+>>>>>>> 2ba518e53a46c500dadce7aa285a311de6491fb7
     }
 
     string UpdateDirection(Vector2 offset)
