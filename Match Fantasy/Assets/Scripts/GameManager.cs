@@ -24,8 +24,8 @@ public class GameManager : MonoBehaviour
     Tile[,] tiles = new Tile[cols, rows]; // A Array of objects for the tiles for the match 3 (tutorial code)
     public PlayerManager player;
     public ScoreAdder score; 
-    int scoreCounterNumber = 0;
-    int moveCounterNumber = 0;
+    public static int scoreCounterNumber = 0;
+    public static int moveCounterNumber = 0;
     void ShuffleList() // shuffles the list of tiles (tutorial code)
     {
         System.Random rand = new System.Random();
@@ -72,7 +72,7 @@ public class GameManager : MonoBehaviour
         }
         for (int i = 0; i < 10; i++) // runs the CheckGrid function 10 times to get rid of the matchs made in the generation phase
         {
-            CheckGrid();
+            StartCheckGrid();
         }
     }
     void Update()
@@ -111,6 +111,7 @@ public class GameManager : MonoBehaviour
 					Vector3 tempPos = tile1.transform.position;
 					tile1.transform.position = tile2.transform.position;
 					tile2.transform.position = tempPos; // moves the second tile to the first position
+					moveCounterNumber +=1;
                     tile1 = null; // Resets the touched tile variable
 					tile2 = null; // Resets the touched tile variable
 				} 
@@ -134,15 +135,12 @@ public class GameManager : MonoBehaviour
 					if (tiles [c, r].type == tiles [c - 1, r].type) // adds to the counter variable if valid match of tiles
 					{
 						counter++;
-                        scoreCounterNumber++;
                     } 
 					else // resets counter if no match
 					{
 						counter = 1;
-                        //scoreCounterNumber = 0;
-
                     }
-					if(counter == 3)// && scoreCounterNumber == 3) // removes three in a row (tutorial code)
+					if(counter == 3) // removes three in a row (tutorial code)
 					{
 						if(tiles[c,r] != null)
 						{
@@ -157,13 +155,14 @@ public class GameManager : MonoBehaviour
 							tiles [c-2, r].tileObj.SetActive (false);
 						}
                         UpdatePlayer (tiles [c, r]);
+						scoreCounterNumber +=3;
 						tiles [c, r] = null; //resets first tile reference
 						tiles [c-1, r] = null; //resets second tile reference
 						tiles [c-2, r] = null; //resets third tile reference
 						renewBoard = true;
 
 					}
-					if(counter == 4)// && scoreCounterNumber == 4) // removes four in a row (Not tutorial code)
+					if(counter == 4) // removes four in a row (Not tutorial code)
 					{
 						if(tiles[c,r] != null)
 						{
@@ -182,13 +181,14 @@ public class GameManager : MonoBehaviour
 							tiles [c-3, r].tileObj.SetActive (false);
 						}
                         UpdatePlayer (tiles [c, r]);
+						scoreCounterNumber += 4;
 						tiles [c, r] = null; //resets first tile reference
 						tiles [c-1, r] = null; //resets second tile reference
 						tiles [c-2, r] = null; //resets third tile reference
 						tiles [c-3, r] = null; //resets fourth tile reference
 						renewBoard = true;
 					}
-					if(counter == 5)// && scoreCounterNumber == 5) // removes five in a row (Not tutorial code)
+					if(counter == 5) // removes five in a row (Not tutorial code)
 					{
 						if(tiles[c,r] != null)
 						{
@@ -211,6 +211,7 @@ public class GameManager : MonoBehaviour
 							tiles [c-4,r].tileObj.SetActive (false);
 						}
                         UpdatePlayer (tiles [c, r]);
+						scoreCounterNumber +=5;
                         tiles [c,r] = null; //resets first tile reference
 						tiles [c-1,r] = null; //resets second tile reference
 						tiles [c-2,r] = null; //resets third tile reference
@@ -231,14 +232,12 @@ public class GameManager : MonoBehaviour
 					if (tiles [c, r].type == tiles [c, r-1].type)
 					{
                         counter++;
-                        scoreCounterNumber++;
                     } 
 					else // resets counter
 					{
 						counter = 1;
-                        //scoreCounterNumber = 0;
                     }
-					if(counter == 3  &&scoreCounterNumber == 3) // removes three in a row (tutorial code)
+					if(counter == 3) // removes three in a row (tutorial code)
 					{
 						if(tiles[c,r] != null)
 						{
@@ -253,12 +252,13 @@ public class GameManager : MonoBehaviour
 							tiles [c,r-2].tileObj.SetActive (false);
 						}
                         UpdatePlayer (tiles [c, r]);
+						scoreCounterNumber +=3;
                         tiles[c, r] = null;
                         tiles[c, r - 1] = null;
                         tiles[c, r - 2] = null;
 						renewBoard = true;
 					}
-					if (counter == 4)// && scoreCounterNumber == 4) // removes four in a row (Not tutorial code)
+					if (counter == 4) // removes four in a row (Not tutorial code)
 					{
 						if(tiles[c,r] != null)
 						{
@@ -277,13 +277,14 @@ public class GameManager : MonoBehaviour
                             tiles[c, r - 3].tileObj.SetActive(false);
                         }
                         UpdatePlayer (tiles [c, r]);
+						scoreCounterNumber +=4;
                         tiles [c,r] = null;
 						tiles [c,r-1] = null;
 						tiles [c,r-2] = null;
 						tiles [c,r-3] = null;
 						renewBoard = true;
 					}
-					if (counter == 5)// && scoreCounterNumber == 5) // removes five in a row (Not tutorial code)
+					if (counter == 5) // removes five in a row (Not tutorial code)
 					{
 						if(tiles[c,r] != null)
 						{
@@ -306,6 +307,7 @@ public class GameManager : MonoBehaviour
 							tiles [c,r-4].tileObj.SetActive (false); 
 						}
                         UpdatePlayer (tiles [c, r]);
+						scoreCounterNumber +=5;
                         tiles [c,r] = null;
 						tiles [c,r-1] = null;
 						tiles [c,r-2] = null;
@@ -399,6 +401,196 @@ public class GameManager : MonoBehaviour
 		else 
 		{
 			Debug.LogError ("Something has gone very wrong");
+		}
+	}
+	void StartCheckGrid() // function for checking the grid for matches at the start of the game (tutorial code block)
+	{
+		int counter = 1;
+		for(int r = 0; r < rows; r++) // checks for coloums
+		{
+			counter = 1;
+			for(int c = 1; c < cols; c++)
+			{
+				if (tiles [c, r] != null && tiles [c - 1, r] != null) // finds if they exist
+				{
+					if (tiles [c, r].type == tiles [c - 1, r].type) // adds to the counter variable if valid match of tiles
+					{
+						counter++;
+					} 
+					else // resets counter if no match
+					{
+						counter = 1;
+					}
+					if(counter == 3) // removes three in a row (tutorial code)
+					{
+						if(tiles[c,r] != null)
+						{
+							tiles [c, r].tileObj.SetActive (false);
+						}
+						if(tiles[c-1,r] != null)
+						{
+							tiles [c-1, r].tileObj.SetActive (false);
+						}
+						if(tiles[c-2,r] != null)
+						{
+							tiles [c-2, r].tileObj.SetActive (false);
+						}
+						tiles [c, r] = null; //resets first tile reference
+						tiles [c-1, r] = null; //resets second tile reference
+						tiles [c-2, r] = null; //resets third tile reference
+						renewBoard = true;
+
+					}
+					if(counter == 4) // removes four in a row (Not tutorial code)
+					{
+						if(tiles[c,r] != null)
+						{
+							tiles [c, r].tileObj.SetActive (false);
+						}
+						if(tiles[c-1,r] != null)
+						{
+							tiles [c-1, r].tileObj.SetActive (false);
+						}
+						if(tiles[c-2,r] != null)
+						{
+							tiles [c-2, r].tileObj.SetActive (false);
+						}
+						if(tiles[c-3,r] != null) 
+						{
+							tiles [c-3, r].tileObj.SetActive (false);
+						}
+						tiles [c, r] = null; //resets first tile reference
+						tiles [c-1, r] = null; //resets second tile reference
+						tiles [c-2, r] = null; //resets third tile reference
+						tiles [c-3, r] = null; //resets fourth tile reference
+						renewBoard = true;
+					}
+					if(counter == 5) // removes five in a row (Not tutorial code)
+					{
+						if(tiles[c,r] != null)
+						{
+							tiles [c,r].tileObj.SetActive (false);
+						}
+						if(tiles[c-1,r] != null)
+						{
+							tiles [c-1,r].tileObj.SetActive (false);
+						}
+						if(tiles[c-2,r] != null)
+						{
+							tiles [c-2,r].tileObj.SetActive (false);
+						}
+						if(tiles[c-3,r] != null) 
+						{
+							tiles [c-3,r].tileObj.SetActive (false);
+						}
+						if(tiles[c-4,r] != null) 
+						{
+							tiles [c-4,r].tileObj.SetActive (false);
+						}
+						tiles [c,r] = null; //resets first tile reference
+						tiles [c-1,r] = null; //resets second tile reference
+						tiles [c-2,r] = null; //resets third tile reference
+						tiles [c-3,r] = null; //resets fourth tile reference
+						tiles [c-4,r] = null; //resets fifth tile reference
+						renewBoard = true;
+					}
+				}
+			}
+		}
+		for(int c = 0; c < cols; c++) // checks for rows (tutorial code block)
+		{
+			counter = 1;
+			for(int r = 1; r < rows; r++)
+			{
+				if (tiles [c, r] != null && tiles [c, r-1] != null) // finds if they exist
+				{
+					if (tiles [c, r].type == tiles [c, r-1].type)
+					{
+						counter++;
+					} 
+					else // resets counter
+					{
+						counter = 1;
+					}
+					if(counter == 3) // removes three in a row (tutorial code)
+					{
+						if(tiles[c,r] != null)
+						{
+							tiles [c,r].tileObj.SetActive (false);
+						}
+						if(tiles[c,r-1] != null)
+						{
+							tiles [c,r-1].tileObj.SetActive (false);
+						}
+						if (tiles [c,r-2] != null) 
+						{
+							tiles [c,r-2].tileObj.SetActive (false);
+						}
+						tiles[c, r] = null;
+						tiles[c, r - 1] = null;
+						tiles[c, r - 2] = null;
+						renewBoard = true;
+					}
+					if (counter == 4) // removes four in a row (Not tutorial code)
+					{
+						if(tiles[c,r] != null)
+						{
+							tiles [c,r].tileObj.SetActive (false);
+						}
+						if(tiles[c,r-1] != null)
+						{
+							tiles [c,r-1].tileObj.SetActive (false);
+						}
+						if(tiles[c,r-2] != null)
+						{
+							tiles [c,r-2].tileObj.SetActive (false);
+						}
+						if (tiles[c, r - 3] != null)
+						{
+							tiles[c, r - 3].tileObj.SetActive(false);
+						}
+						tiles [c,r] = null;
+						tiles [c,r-1] = null;
+						tiles [c,r-2] = null;
+						tiles [c,r-3] = null;
+						renewBoard = true;
+					}
+					if (counter == 5) // removes five in a row (Not tutorial code)
+					{
+						if(tiles[c,r] != null)
+						{
+							tiles [c,r].tileObj.SetActive (false);
+						}
+						if(tiles[c,r-1] != null)
+						{
+							tiles [c,r-1].tileObj.SetActive (false);
+						}
+						if(tiles[c,r-2] != null)
+						{
+							tiles [c,r-2].tileObj.SetActive (false);
+						}
+						if(tiles[c,r-3] != null)
+						{
+							tiles [c,r-3].tileObj.SetActive (false); 
+						}
+						if(tiles[c,r-4] != null)
+						{
+							tiles [c,r-4].tileObj.SetActive (false); 
+						}
+						tiles [c,r] = null;
+						tiles [c,r-1] = null;
+						tiles [c,r-2] = null;
+						tiles [c,r-3] = null; 
+						tiles [c,r-4] = null;
+						renewBoard = true;
+					}
+				}
+			}
+		}
+		if(renewBoard) // renews the board
+		{
+			RenewGrid ();
+			renewBoard = false;
 		}
 	}
 }
