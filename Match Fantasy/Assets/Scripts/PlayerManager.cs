@@ -164,7 +164,6 @@ public class PlayerManager : MonoBehaviour //(Not tutorial code)
         nsew[2] = UpdateDirection(Vector2.right);
         nsew[3] = UpdateDirection(Vector2.left);
     }
-
     string UpdateDirection(Vector2 offset)
     {
         RaycastHit2D hit;
