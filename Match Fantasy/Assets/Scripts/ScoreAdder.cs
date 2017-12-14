@@ -12,7 +12,6 @@ public class ScoreAdder : MonoBehaviour //(Not tutorial code)
     {
 		
 	}
-
 	void Update () // Update is called once per frame
     {
 		scoreCounter.text = "Score: " + GameManager.scoreCounterNumber.ToString();

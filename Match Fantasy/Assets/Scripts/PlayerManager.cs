@@ -104,7 +104,7 @@ public class PlayerManager : MonoBehaviour //(Not tutorial code)
     }
     void Move(string tileTag)
     {
-        print("Move(" + tileTag + ")");
+        //print("Move(" + tileTag + ")");
         TryToMovePlayer(tileTag);
         UpdateNsew();
     }
