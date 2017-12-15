@@ -20,91 +20,36 @@ public class PlayerManager : MonoBehaviour //(Not tutorial code)
     {
         UpdateNsew();
     }
-    void Update()
-    {
-        //if (Input.GetKeyDown(KeyCode.R))
-        //{
-        //    Red();
-        //}
-        //if (Input.GetKeyDown(KeyCode.B))
-        //{
-        //    Blue();
-        //}
-        //if (Input.GetKeyDown(KeyCode.G))
-        //{
-        //    Green();
-        //}
-        //if (Input.GetKeyDown(KeyCode.Y))
-        //{
-        //    Yellow();
-        //}
-        //if (Input.GetKeyDown(KeyCode.C))
-        //{
-        //    Cyan();
-        //}
-        //if (Input.GetKeyDown(KeyCode.P))
-        //{
-        //    Purple();
-        //}
-        //if (Input.GetKeyDown(KeyCode.O))
-        //{
-        //    Orange();
-        //}
-    }
     public void Red()
     {
-        //print ("Red");
-        //PlayerSprite.transform.position = DTiles[0].transform.position;
-        //CheckPosition();
         Move("Red");
-
     }
     public void Blue()
     {
-        //print ("Blue");
-        //PlayerSprite.transform.position = DTiles[3].transform.position;
-        //CheckPosition();
         Move("Blue");
-
     }
     public void Green()
     {
-        //print ("Green");
-        //PlayerSprite.transform.position = DTiles[1].transform.position;
-        //CheckPosition();
         Move("Green");
     }
     public void Yellow()
     {
-        //print ("Yellow");
-        //PlayerSprite.transform.position = DTiles[5].transform.position;
-        //CheckPosition();
         Move("Yellow");
     }
     public void Cyan()
     {
-        //print ("Cyan");
-        //PlayerSprite.transform.position = DTiles[6].transform.position;
-        //CheckPosition();
         Move("Cyan");
     }
     public void Purple()
     {
-        //print ("Purple");
-        //PlayerSprite.transform.position = DTiles[4].transform.position;
-        //CheckPosition();
         Move("Purple");
     }
     public void Orange()
     {
-        //print ("Orange");
-        //PlayerSprite.transform.position = DTiles[2].transform.position;
-        //CheckPosition();
         Move("Orange");
     }
     void Move(string tileTag)
     {
-        //print("Move(" + tileTag + ")");
         TryToMovePlayer(tileTag);
         UpdateNsew();
     }
@@ -177,58 +122,4 @@ public class PlayerManager : MonoBehaviour //(Not tutorial code)
             return "";
         }
     }
-    //public void CheckPosition()
-    //{
-    //    {
-    //        Vector3 up = PlayerSprite.transform.TransformDirection(Vector3.up);
-    //        Vector3 back = PlayerSprite.transform.TransformDirection(Vector3.down);
-    //        Vector3 left = PlayerSprite.transform.TransformDirection(Vector3.left);
-    //        Vector3 right = PlayerSprite.transform.TransformDirection(Vector3.right);
-    //        if (Physics2D.Raycast(transform.position, up, 1))
-    //        {
-    //            print("There is something in front of the object!");
-    //        }
-    //        if (Physics2D.Raycast(transform.position, back, 1))
-    //        {
-    //            print("There is something back of the object!");
-    //        }
-    //        if (Physics2D.Raycast(transform.position, left, 1))
-    //        {
-    //            print("There is something to the left of the object!");
-    //        }
-    //        if (Physics2D.Raycast(transform.position, right, 1))
-    //        {
-    //            print("There is something to the right of the object!");
-    //            if (CompareTag("Orange"))
-    //            {
-    //                Orange();
-    //            }
-    //            if (CompareTag("Red"))
-    //            {
-
-    //            }
-    //            if (CompareTag("Blue"))
-    //            {
-
-    //            }
-    //            if (CompareTag("Cyan"))
-    //            {
-
-    //            }
-    //            if (CompareTag("Green"))
-    //            {
-
-    //            }
-    //            if (CompareTag("Purple"))
-    //            {
-
-    //            }
-    //            if (CompareTag("Yellow"))
-    //            {
-
-    //            }
-
-    //        }
-    //    }
-    //}
 }

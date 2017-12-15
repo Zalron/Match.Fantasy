@@ -229,8 +229,8 @@ public class GameManager : MonoBehaviour
 			{
 				if (tiles [c, r] != null && tiles [c, r-1] != null) // finds if they exist
 				{
-					if (tiles [c, r].type == tiles [c, r-1].type)
-					{
+					if (tiles [c, r].type == tiles [c, r-1].type) // finds if they exist
+                    {
                         counter++;
                     } 
 					else // resets counter
@@ -252,11 +252,11 @@ public class GameManager : MonoBehaviour
 							tiles [c,r-2].tileObj.SetActive (false);
 						}
                         UpdatePlayer (tiles [c, r]);
-						scoreCounterNumber +=3;
-                        tiles[c, r] = null;
-                        tiles[c, r - 1] = null;
-                        tiles[c, r - 2] = null;
-						renewBoard = true;
+						scoreCounterNumber +=3; //
+                        tiles[c, r] = null; //resets first tile reference
+                        tiles[c, r - 1] = null; //resets second tile reference
+                        tiles[c, r - 2] = null; //resets third tile reference
+                        renewBoard = true;
 					}
 					if (counter == 4) // removes four in a row (Not tutorial code)
 					{
@@ -278,11 +278,11 @@ public class GameManager : MonoBehaviour
                         }
                         UpdatePlayer (tiles [c, r]);
 						scoreCounterNumber +=4;
-                        tiles [c,r] = null;
-						tiles [c,r-1] = null;
-						tiles [c,r-2] = null;
-						tiles [c,r-3] = null;
-						renewBoard = true;
+                        tiles [c,r] = null; //resets first tile reference
+                        tiles [c,r-1] = null; //resets second tile reference
+                        tiles [c,r-2] = null; //resets third tile reference
+                        tiles [c,r-3] = null; //resets fourth tile reference
+                        renewBoard = true;
 					}
 					if (counter == 5) // removes five in a row (Not tutorial code)
 					{
@@ -308,12 +308,12 @@ public class GameManager : MonoBehaviour
 						}
                         UpdatePlayer (tiles [c, r]);
 						scoreCounterNumber +=5;
-                        tiles [c,r] = null;
-						tiles [c,r-1] = null;
-						tiles [c,r-2] = null;
-						tiles [c,r-3] = null; 
-						tiles [c,r-4] = null;
-						renewBoard = true;
+                        tiles [c,r] = null; //resets first tile reference
+                        tiles [c,r-1] = null; //resets second tile reference
+                        tiles [c,r-2] = null; //resets third tile reference
+                        tiles [c,r-3] = null; //resets fourth tile reference
+                        tiles [c,r-4] = null; //resets fifth tile reference
+                        renewBoard = true;
 					}
 				}
 			}
@@ -324,10 +324,6 @@ public class GameManager : MonoBehaviour
 			renewBoard = false;
 		}
 	}
-    //void CountScore(int scoreCounterNumber)
-    //{
-    //    score.ScoreCounter(scoreCounterNumber);
-    //}
 	void RenewGrid() // renews the grid after a pair of three is taked away (tutorial code block)
 	{
 		bool anyMoved = false;
@@ -353,7 +349,7 @@ public class GameManager : MonoBehaviour
 				}
 				if (tiles [c,r] != null) 
 				{
-					if (tiles [c,r-1] == null) 
+					if (tiles [c,r-1] == null) // if a space is empty then a new tile is dropped in
 					{
 						tiles [c,r-1] = tiles [c,r];
 						tiles [c,r-1].tileObj.transform.position = new Vector3 (c,r-1,0);
@@ -368,7 +364,7 @@ public class GameManager : MonoBehaviour
 			Invoke ("RenewGrid", 0.5f);
 		}
 	}
-	void UpdatePlayer (Tile tile)
+	void UpdatePlayer (Tile tile) //updates the players positions on the duegeon board with the results from the match 3 board
 	{
 		if (tile.tileObj.CompareTag ("Red")) 
 		{

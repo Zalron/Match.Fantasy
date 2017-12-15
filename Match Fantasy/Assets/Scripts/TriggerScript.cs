@@ -8,7 +8,6 @@ public class TriggerScript : MonoBehaviour
     public GameObject pm;
 	private void OnTriggerEnter2D(Collider2D collision)
     {
-		//print ("Reached the end");
         SceneManager.LoadScene("End Scene");
     }
 }
